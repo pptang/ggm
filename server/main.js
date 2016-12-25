@@ -4,7 +4,7 @@ const webpack = require('webpack')
 const webpackConfig = require('../config/webpack.config')
 const project = require('../config/project.config')
 const compress = require('compression')
-const apiRoutes = require('./routes/index');
+const apiRoutes = require('./routes/index')
 const app = express()
 const cookieSession = require('cookie-session')
 // This rewrites all routes requests to the root /index.html file
@@ -16,10 +16,10 @@ const cookieSession = require('cookie-session')
 app.use(compress())
 app.use(cookieSession({
   name: 'session',
-  keys: ["test"],
+  keys: ['test'],
   maxAge: 24 * 60 * 60 * 1000
 }))
-app.use(apiRoutes);
+app.use(apiRoutes)
 // ------------------------------------
 // Apply Webpack HMR Middleware
 // ------------------------------------
