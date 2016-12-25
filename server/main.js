@@ -4,17 +4,22 @@ const webpack = require('webpack')
 const webpackConfig = require('../config/webpack.config')
 const project = require('../config/project.config')
 const compress = require('compression')
-
+const apiRoutes = require('./routes/index');
 const app = express()
-
+const cookieSession = require('cookie-session')
 // This rewrites all routes requests to the root /index.html file
 // (ignoring file requests). If you want to implement universal
 // rendering, you'll want to remove this middleware.
-app.use(require('connect-history-api-fallback')())
+// app.use(require('connect-history-api-fallback')())
 
 // Apply gzip compression
 app.use(compress())
-
+app.use(cookieSession({
+  name: 'session',
+  keys: ["test"],
+  maxAge: 24 * 60 * 60 * 1000
+}))
+app.use(apiRoutes);
 // ------------------------------------
 // Apply Webpack HMR Middleware
 // ------------------------------------
